@@ -40,7 +40,7 @@ def build_item_model(features, mode, params):
 def model_fn(features, labels, mode, params):
     user_net = build_user_model(features, mode, params)
     item_net = build_item_model(features, mode, params)
-    dot = tf.reduce_sum(tf.mutiply(user_net, item_net), axis=1, keepdims=True)
+    dot = tf.reduce_sum(tf.multiply(user_net, item_net), axis=1, keepdims=True)
     pred = tf.sigmoid(dot)
     if mode == tf.estimator.ModeKeys.PREDICT:
         return tf.estimator.EstimatorSpec(mode, predictions={"output": pred})
